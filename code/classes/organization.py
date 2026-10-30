@@ -1,2 +1,12 @@
 class Organization:
-    pass
+    def __init__(self, id: int, organization_name: str, color: tuple[int, int, int], password: str) -> None:
+        self.id = id
+        self.organization_name = organization_name
+        self.events = []
+        self.color = color
+        self.password = password
+
+
+    def add_event(self, event) -> None:
+        self.events += [event]
+    
