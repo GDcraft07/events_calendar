@@ -1,7 +1,8 @@
 from config import NUMBER_OF_SLOTS
 
 class Day:
-    def __init__(self, day: int, month: int, year: int) -> None:
+    def __init__(self, id: int, day: int, month: int, year: int) -> None:
+        self.id = id
         self.day = day
         self.month = month
         self.year = year
@@ -23,3 +24,12 @@ class Day:
 
     def get_day_information(self) -> tuple:
         return (self.day, self.month, self.year)
+
+
+    def get_attributes(self) -> dict:
+        return {
+            "id": self.id,
+            "day": self.day,
+            "month": self.month,
+            "year": self.year
+        }

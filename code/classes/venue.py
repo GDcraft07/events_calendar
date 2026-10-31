@@ -4,5 +4,11 @@ class Venue:
         self.events = []
 
 
-    def add_events(self, event) -> None:
+    def add_event(self, event) -> None:
         self.events += [event]
+
+
+    def get_attributes(self) -> dict:
+        return {
+            "id": self.id
+        }

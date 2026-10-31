@@ -16,3 +16,15 @@ class Event:
     def add_event_in_mask(self, mask: list) -> list:
         mask[self.start_id:self.end_id] = [self.organization.id] * (self.end_id - self.start_id + 1)
         return mask
+
+
+    def get_attributes(self) -> dict:
+        return {
+            "venue": self.venue.id,
+            "organization": self.organization.id,
+            "day": self.day.id,
+            "start_id": self.start_id,
+            "end_id": self.end_id,
+            "event_name": self.event_name,
+            "bio": self.bio
+        }

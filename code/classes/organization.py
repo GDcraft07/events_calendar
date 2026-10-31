@@ -9,4 +9,13 @@ class Organization:
 
     def add_event(self, event) -> None:
         self.events += [event]
+
+
+    def get_attributes(self) -> dict:
+        return {
+            "id": self.id,
+            "organization_name": self.organization_name, 
+            "color": self.color,
+            "password": self.password
+        }
     
