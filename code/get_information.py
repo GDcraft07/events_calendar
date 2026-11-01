@@ -6,6 +6,8 @@ from classes.event import Event
 
 
 def get_data(json_link: str) -> tuple[list, list, list, list]:
+    ''' Функция проходится по файлу json и формирует классы Python для работы с ними '''
+    
     data = read_json(json_link)
 
     list_organization = []
