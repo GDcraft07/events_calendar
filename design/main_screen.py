@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import ttk
-from config import HEIGHT, WIDTH, SIZE_SLOT, ROW_COUNT_SLOTS, COLUMN_COUNT_SLOTS, COLORS, TEXT_FONT
+from config import HEIGHT, WIDTH, SIZE_SLOT, ROW_COUNT_SLOTS, COLUMN_COUNT_SLOTS, COLORS, TEXT_FONT, COUNT_SLOTS
 from tkcalendar import DateEntry
 from pathlib import Path
+from change_color import change_color
 
 
 def main_screen():
@@ -47,9 +48,14 @@ def main_screen():
         slots_canvas.place(x=13, y=40)
         slots_canvas.update()
 
+        select_slot_ids = [None, []]
+        mask = [0] * COUNT_SLOTS
+
         for i in range(ROW_COUNT_SLOTS):
             for j in range(COLUMN_COUNT_SLOTS):
-                slots_canvas.create_rectangle(j * SIZE_SLOT, i * SIZE_SLOT, (j + 1) * SIZE_SLOT, (i + 1) * SIZE_SLOT, fill=COLORS["GRAY"], outline=COLORS["BLACK"])
+                slot_id = slots_canvas.create_rectangle(j * SIZE_SLOT, i * SIZE_SLOT, (j + 1) * SIZE_SLOT, (i + 1) * SIZE_SLOT, fill=COLORS["GRAY"], outline=COLORS["BLACK"])
+
+                slots_canvas.tag_bind(slot_id, "<Button-1>", lambda _, slot_id=slot_id, slots_canvas=slots_canvas, select_slot_ids=select_slot_ids, mask=mask: change_color(slot_id, slots_canvas, select_slot_ids, mask))
 
 
         organization_label = ttk.Label(master=master, text="Организация", font=TEXT_FONT)
