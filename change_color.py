@@ -1,6 +1,8 @@
 from config import COLORS
+import tkinter
+from config import START_END
 
-def change_color(slot_id, slots_canvas, select_slot_ids, mask):
+def change_color(slot_id: int, slots_canvas: tkinter.Canvas, select_slot_ids: list, mask: list, venue_id: int) -> list:
     slot_color = slots_canvas.itemcget(slot_id, "fill")
 
     if slot_color == COLORS["GRAY"]:
@@ -49,3 +51,6 @@ def change_color(slot_id, slots_canvas, select_slot_ids, mask):
                     select_slot_ids[1].remove(i)
                     mask[i - 1] = 0
                     select_slot_ids[0] = True
+
+    if select_slot_ids[0] != None:
+        START_END[venue_id] = [select_slot_ids[1][0], select_slot_ids[1][-1]]

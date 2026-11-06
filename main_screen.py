@@ -1,9 +1,12 @@
 from tkinter import *
 from tkinter import ttk
-from config import HEIGHT, WIDTH, SIZE_SLOT, ROW_COUNT_SLOTS, COLUMN_COUNT_SLOTS, COLORS, TEXT_FONT, COUNT_SLOTS
+from config import HEIGHT, WIDTH, TEXT_FONT, COUNT_VENUES, START_END
 from tkcalendar import DateEntry
 from pathlib import Path
-from change_color import change_color
+from code.get_information import get_data
+from add_event import add_event
+from create_canvas import create_canvas
+from add_day_to_list import add_day_to_list
 
 
 def main_screen():
@@ -11,6 +14,7 @@ def main_screen():
     root.geometry(f"{WIDTH}x{HEIGHT}+{(root.winfo_screenwidth() - WIDTH) // 2}+{(root.winfo_screenheight() - HEIGHT) // 2}")
     root.title("Бронирование площадок")
 
+    list_organization, list_venue, list_day, list_event = get_data(Path("code").absolute() / "full_information.json")
 
     logo = PhotoImage(file=str(Path(__file__).resolve().parent / "logo.png"))
     root.iconphoto(True, logo)
@@ -33,7 +37,7 @@ def main_screen():
     notebook = ttk.Notebook(master=frame_work_with_event)
     notebook.place(x=0, y=0, width=frame_work_with_event.winfo_width(), height=frame_work_with_event.winfo_height())
 
-    venues = [ttk.Frame(notebook) for _ in range(5)]
+    venues = [ttk.Frame(notebook) for _ in range(COUNT_VENUES)]
 
 
     for number, master in enumerate(venues):
@@ -43,26 +47,13 @@ def main_screen():
         date_entry = DateEntry(master=master)
         date_entry.place(x=13, y=10)
 
-
-        slots_canvas = Canvas(master=master, bg=COLORS["WHITE"], width=(SIZE_SLOT * COLUMN_COUNT_SLOTS), height=(SIZE_SLOT * ROW_COUNT_SLOTS))
-        slots_canvas.place(x=13, y=40)
-        slots_canvas.update()
-
-        select_slot_ids = [None, []]
-        mask = [0] * COUNT_SLOTS
-
-        for i in range(ROW_COUNT_SLOTS):
-            for j in range(COLUMN_COUNT_SLOTS):
-                slot_id = slots_canvas.create_rectangle(j * SIZE_SLOT, i * SIZE_SLOT, (j + 1) * SIZE_SLOT, (i + 1) * SIZE_SLOT, fill=COLORS["GRAY"], outline=COLORS["BLACK"])
-
-                slots_canvas.tag_bind(slot_id, "<Button-1>", lambda _, slot_id=slot_id, slots_canvas=slots_canvas, select_slot_ids=select_slot_ids, mask=mask: change_color(slot_id, slots_canvas, select_slot_ids, mask))
-
+        slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
 
         organization_label = ttk.Label(master=master, text="Организация", font=TEXT_FONT)
         organization_label.place(x=13, y=(slots_canvas.winfo_height() + slots_canvas.winfo_y() + 3))
         organization_label.update()
         
-        organization_combobox = ttk.Combobox(master=master, width=26)
+        organization_combobox = ttk.Combobox(master=master, width=26, values=[org.organization_name for org in list_organization], state="readonly")
         organization_combobox.place(x=13, y=(organization_label.winfo_height() + organization_label.winfo_y() + 2))
         organization_combobox.update()
 
@@ -71,12 +62,17 @@ def main_screen():
         password_label.place(x=(organization_label.winfo_x() + organization_combobox.winfo_width() + 20), y=organization_label.winfo_y())
         password_label.update()
 
-        password_entry = ttk.Entry(master=master, width=29)
+        password_entry = ttk.Entry(master=master, width=29, show="*")
         password_entry.place(x=password_label.winfo_x(), y=(password_label.winfo_height() + password_label.winfo_y() + 1))
         password_entry.update()
 
+        def accept_click(password_entry=password_entry, organization_combobox=organization_combobox, date_entry=date_entry, master=master):
+            password = password_entry.get()
 
-        creat_event_button = ttk.Button(master=master, text="Добавить мероприятие")
+            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()], add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], "", password, list_event, master, list_day, list_organization)
+
+
+        creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)
         creat_event_button.place(x=(password_entry.winfo_x() + password_entry.winfo_width() + 20), y=(password_entry.winfo_y() - 2))
 
 
