@@ -10,6 +10,7 @@ from add_day_to_list import add_day_to_list
 from code.save_information import save_data
 from new_date_click import new_date_click 
 from datetime import datetime
+from update_listbox import update_listbox
 
 
 def main_screen():
@@ -90,6 +91,11 @@ def main_screen():
         creat_event_button.place(x=(name_event_entry.winfo_x() + name_event_entry.winfo_width() + 20), y=(name_event_entry.winfo_y() - 2))
 
 
+    listbox_information = Listbox(master=frame_infromation, justify=CENTER)
+    update_listbox(list_day, notebook.index(notebook.select()), list(map(int, (str(datetime.now()).split()[0]).split("-"))), listbox_information)
+    listbox_information.pack(fill=X)
+    
+    
     root.mainloop()
 
     save_data(Path("code").absolute() / "full_information.json", list_organization, list_venue, list_day, list_event)

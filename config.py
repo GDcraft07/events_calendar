@@ -17,3 +17,5 @@ COLORS = {
 TEXT_FONT = ("Arial", 8)
 
 START_END = [[0, 0]] * COUNT_VENUES
+
+START_TIME_MINUTES = 9 * 60

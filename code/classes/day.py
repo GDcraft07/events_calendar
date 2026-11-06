@@ -31,6 +31,19 @@ class Day:
         return day_mask
 
 
+    def get_events_on_venue(self, venue_id: int) -> list:
+        ''' Получение всех событий в этот день на данной площадке '''
+
+        currents_events = []
+
+        for event in self.events:
+            if event.venue.id == venue_id:
+                currents_events.append(event)
+
+        return currents_events
+
+
+
     def get_day_information(self) -> tuple:
         ''' Возвращает список с полями год, месяц и день '''
 

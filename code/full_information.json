@@ -48,6 +48,23 @@
             "id": 4
         }
     ],
-    "day": [],
-    "event": []
+    "day": [
+        {
+            "id": 0,
+            "day": 6,
+            "month": 11,
+            "year": 2026
+        }
+    ],
+    "event": [
+        {
+            "venue": 0,
+            "organization": 1,
+            "day": 0,
+            "start_id": 0,
+            "end_id": 4,
+            "event_name": "ГАЙДУЛЯН",
+            "bio": ""
+        }
+    ]
 }
