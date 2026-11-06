@@ -51,70 +51,55 @@
     "day": [
         {
             "id": 0,
-            "day": 5,
-            "month": 11,
-            "year": 2026
-        },
-        {
-            "id": 1,
             "day": 6,
             "month": 11,
             "year": 2026
-        },
-        {
-            "id": 2,
-            "day": 7,
-            "month": 11,
-            "year": 2026
-        },
-        {
-            "id": 3,
-            "day": 9,
-            "month": 11,
-            "year": 2026
-        },
-        {
-            "id": 4,
-            "day": 15,
-            "month": 11,
-            "year": 2077
         }
     ],
     "event": [
         {
             "venue": 0,
+            "organization": 1,
+            "day": 0,
+            "start_id": 38,
+            "end_id": 44,
+            "event_name": "12",
+            "bio": ""
+        },
+        {
+            "venue": 0,
+            "organization": 1,
+            "day": 0,
+            "start_id": 38,
+            "end_id": 44,
+            "event_name": "",
+            "bio": ""
+        },
+        {
+            "venue": 0,
             "organization": 0,
-            "day": 1,
-            "start_id": 14,
-            "end_id": 21,
-            "event_name": "",
-            "bio": ""
-        },
-        {
-            "venue": 1,
-            "organization": 4,
-            "day": 1,
-            "start_id": 11,
-            "end_id": 30,
+            "day": 0,
+            "start_id": 38,
+            "end_id": 44,
             "event_name": "",
             "bio": ""
         },
         {
             "venue": 0,
             "organization": 1,
-            "day": 1,
-            "start_id": 36,
-            "end_id": 48,
-            "event_name": "",
-            "bio": ""
-        },
-        {
-            "venue": 0,
-            "organization": 1,
-            "day": 4,
+            "day": 0,
             "start_id": 25,
-            "end_id": 48,
-            "event_name": "",
+            "end_id": 35,
+            "event_name": "we",
+            "bio": ""
+        },
+        {
+            "venue": 0,
+            "organization": 0,
+            "day": 0,
+            "start_id": 10,
+            "end_id": 20,
+            "event_name": "we",
             "bio": ""
         }
     ]

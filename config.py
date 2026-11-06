@@ -14,6 +14,6 @@ COLORS = {
     "RED": "#FF0000"
 }
 
-TEXT_FONT = ("Arial", 9)
+TEXT_FONT = ("Arial", 8)
 
 START_END = [[0, 0]] * COUNT_VENUES
