@@ -1,8 +1,8 @@
-from work_with_json import read_json, edit_json
-from classes.organization import Organization
-from classes.venue import Venue
-from classes.day import Day
-from classes.event import Event
+from .work_with_json import read_json, edit_json
+from .classes.organization import Organization
+from .classes.venue import Venue
+from .classes.day import Day
+from .classes.event import Event
 
 
 def get_data(json_link: str) -> tuple[list, list, list, list]:

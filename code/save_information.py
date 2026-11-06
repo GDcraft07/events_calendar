@@ -1,4 +1,4 @@
-from work_with_json import read_json, edit_json
+from .work_with_json import read_json, edit_json
 
 def save_data(json_link: str, list_organization: list, list_venue: list, list_day: list, list_event) -> None:
     ''' Функция сохраняет поля классов в json-файл '''

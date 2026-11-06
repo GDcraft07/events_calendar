@@ -1,7 +1,7 @@
 class Event:
     ''' Класс самого мероприятия '''
 
-    def __init__(self, venue, organization, day, start_id: int, end_id: int, event_name: str, bio: str) -> None:
+    def __init__(self, venue, organization, day, start_id: int, end_id: int, event_name: str, bio: str="") -> None:
         ''' Инициализация полей класса: площадка, на которой будет проводится мероприятие, организация, которая будет проводить мероприятие, день, когда будет проводится мероприятие, индекс начального и конечного слотов, название мероприятия и его описание '''
 
         self.venue = venue
@@ -20,7 +20,7 @@ class Event:
     def add_event_in_mask(self, mask: list) -> list:
         ''' Функция добавления мероприятия в определенную маску '''
 
-        mask[self.start_id:self.end_id] = [self.organization.id] * (self.end_id - self.start_id + 1)
+        mask[self.start_id:self.end_id] = [self.organization.id + 1] * (self.end_id - self.start_id)
         return mask
 
 

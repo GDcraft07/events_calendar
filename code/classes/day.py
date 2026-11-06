@@ -1,4 +1,4 @@
-from config import NUMBER_OF_SLOTS
+from .config import NUMBER_OF_SLOTS
 
 class Day:
     ''' Класс отдельно взятого дня из календаря '''
@@ -32,9 +32,9 @@ class Day:
 
 
     def get_day_information(self) -> tuple:
-        ''' Возвращает картеж с полями день, месяц и год '''
+        ''' Возвращает список с полями год, месяц и день '''
 
-        return (self.day, self.month, self.year)
+        return [self.year, self.month, self.day]
 
 
     def get_attributes(self) -> dict:

@@ -1,18 +1,18 @@
-from config import SALT
+from .config import SALT
 from hashlib import sha256
 
 
 class Organization:
     ''' Класс организации, которая проводит мероприятие '''
 
-    def __init__(self, id: int, organization_name: str, color: tuple[int, int, int], password: str) -> None:
+    def __init__(self, id: int, organization_name: str, color: str, password: str, is_not_hash: bool=False) -> None:
         ''' Инициализация полей класса: id организации, название организации, цвет организации и пароль '''
 
         self.id = id
         self.organization_name = organization_name
         self.events = []
         self.color = color
-        self.password = self.hash_password(password)
+        self.password = self.hash_password(password) if is_not_hash else password
 
 
     def add_event(self, event) -> None:
