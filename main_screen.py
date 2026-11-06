@@ -8,6 +8,10 @@ from add_event import add_event
 from create_canvas import create_canvas
 from add_day_to_list import add_day_to_list
 
+def new_date_click(_, master, list_day, list_organization, number, date_entry):
+            create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
+            print(list(map(int, str(date_entry.get_date()).split("-"))))
+
 
 def main_screen():
     root = Tk()
@@ -46,6 +50,8 @@ def main_screen():
         
         date_entry = DateEntry(master=master)
         date_entry.place(x=13, y=10)
+
+        date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry: new_date_click(_, master, list_day, list_organization, number, date_entry))
 
         slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
 
