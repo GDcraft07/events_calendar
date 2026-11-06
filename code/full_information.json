@@ -48,59 +48,6 @@
             "id": 4
         }
     ],
-    "day": [
-        {
-            "id": 0,
-            "day": 6,
-            "month": 11,
-            "year": 2026
-        }
-    ],
-    "event": [
-        {
-            "venue": 0,
-            "organization": 1,
-            "day": 0,
-            "start_id": 38,
-            "end_id": 44,
-            "event_name": "12",
-            "bio": ""
-        },
-        {
-            "venue": 0,
-            "organization": 1,
-            "day": 0,
-            "start_id": 38,
-            "end_id": 44,
-            "event_name": "",
-            "bio": ""
-        },
-        {
-            "venue": 0,
-            "organization": 0,
-            "day": 0,
-            "start_id": 38,
-            "end_id": 44,
-            "event_name": "",
-            "bio": ""
-        },
-        {
-            "venue": 0,
-            "organization": 1,
-            "day": 0,
-            "start_id": 25,
-            "end_id": 35,
-            "event_name": "we",
-            "bio": ""
-        },
-        {
-            "venue": 0,
-            "organization": 0,
-            "day": 0,
-            "start_id": 10,
-            "end_id": 20,
-            "event_name": "we",
-            "bio": ""
-        }
-    ]
+    "day": [],
+    "event": []
 }

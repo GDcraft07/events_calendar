@@ -50,7 +50,7 @@ def main_screen():
         date_entry = DateEntry(master=master, mindate=datetime.now())
         date_entry.place(x=13, y=10)
 
-        date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry: new_date_click(_, master, list_day, list_organization, number, date_entry))
+        date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry, venue_id=number: new_date_click(_, master, list_day, list_organization, number, date_entry, venue_id))
 
         slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
 
@@ -83,7 +83,7 @@ def main_screen():
             password = password_entry.get()
             name_event = name_event_entry.get()
 
-            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()], add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry)
+            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()] if organization_combobox.current() != -1 else None, add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry)
 
 
         creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)

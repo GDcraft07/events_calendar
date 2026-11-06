@@ -36,6 +36,8 @@ def change_color(slot_id: int, slots_canvas: tkinter.Canvas, select_slot_ids: li
             select_slot_ids[0] = None
             select_slot_ids[1] = []
             mask[slot_id - 1] = 0
+            START_END[venue_id] = [0, 0]
+
 
         else:
             if select_slot_ids[0]:

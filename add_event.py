@@ -5,10 +5,9 @@ from config import START_END
 
 
 def add_event(venue, organization, day, start_id: int, end_id: int, event_name: str, password: str, list_event: list, master, list_day: list, list_organization: list, password_entry, name_event_entry) -> None:
-    if not organization.check_password(password) or (start_id == 0 and end_id == 0):
+    if organization == None or not organization.check_password(password) or (start_id == 0 and end_id == 0):
         return None
 
-    print(start_id, end_id)
     new_event = Event(venue, organization, day, start_id - 1, end_id, event_name)
     list_event.append(new_event)
     START_END[venue.id] = [0, 0]
