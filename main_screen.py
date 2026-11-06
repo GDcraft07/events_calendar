@@ -7,10 +7,8 @@ from code.get_information import get_data
 from add_event import add_event
 from create_canvas import create_canvas
 from add_day_to_list import add_day_to_list
-
-def new_date_click(_, master, list_day, list_organization, number, date_entry):
-            create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
-            print(list(map(int, str(date_entry.get_date()).split("-"))))
+from code.save_information import save_data
+from new_date_click import new_date_click 
 
 
 def main_screen():
@@ -83,6 +81,9 @@ def main_screen():
 
 
     root.mainloop()
+
+    save_data(Path("code").absolute() / "full_information.json", list_organization, list_venue, list_day, list_event)
+    
 
 
 if __name__ == "__main__":

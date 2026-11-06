@@ -16,7 +16,6 @@ def create_canvas(master, list_day, list_organization, venue_id, date):
             mask = i.get_mask(venue_id)
             break
 
-    print(mask)
 
     for i in range(ROW_COUNT_SLOTS):
         for j in range(COLUMN_COUNT_SLOTS):

@@ -1,6 +1,97 @@
 {
-    "organization": [],
-    "venue": [],
-    "day": [],
-    "event": []
+    "organization": [
+        {
+            "id": 0,
+            "organization_name": "Тинькофф",
+            "color": "#00FF00",
+            "password": "8d27851e631e6b85424edb5edc8d0979144c240ed8985c61a7c73dae2a8255da"
+        },
+        {
+            "id": 1,
+            "organization_name": "Альфа",
+            "color": "#0000FF",
+            "password": "cdc0cc02f1cf785c8890702569deeae29f01d8e25bf72e06e986488149784b02"
+        },
+        {
+            "id": 2,
+            "organization_name": "Сбер",
+            "color": "#00FFF0",
+            "password": "fbf06100f74892913282e36b68de651edeefae02ca1d07a035148644d00e7612"
+        },
+        {
+            "id": 3,
+            "organization_name": "Точка банк",
+            "color": "#F0FF00",
+            "password": "d4dff103d261819703771b59f73785e41e929c751713f548138ce30be756d913"
+        },
+        {
+            "id": 4,
+            "organization_name": "ФПИ Банк",
+            "color": "#FF00FF",
+            "password": "41a320ad9cde34e18b712190482e5798df2f386b67fe32f56e3cb67e5ce28801"
+        }
+    ],
+    "venue": [
+        {
+            "id": 0
+        },
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        },
+        {
+            "id": 3
+        },
+        {
+            "id": 4
+        }
+    ],
+    "day": [
+        {
+            "id": 0,
+            "day": 5,
+            "month": 11,
+            "year": 2026
+        },
+        {
+            "id": 1,
+            "day": 6,
+            "month": 11,
+            "year": 2026
+        },
+        {
+            "id": 2,
+            "day": 7,
+            "month": 11,
+            "year": 2026
+        },
+        {
+            "id": 3,
+            "day": 9,
+            "month": 11,
+            "year": 2026
+        }
+    ],
+    "event": [
+        {
+            "venue": 0,
+            "organization": 0,
+            "day": 1,
+            "start_id": 14,
+            "end_id": 21,
+            "event_name": "",
+            "bio": ""
+        },
+        {
+            "venue": 1,
+            "organization": 4,
+            "day": 1,
+            "start_id": 11,
+            "end_id": 30,
+            "event_name": "",
+            "bio": ""
+        }
+    ]
 }
