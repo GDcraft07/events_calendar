@@ -73,7 +73,7 @@ def main_screen():
         def accept_click(password_entry=password_entry, organization_combobox=organization_combobox, date_entry=date_entry, master=master):
             password = password_entry.get()
 
-            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()], add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], "", password, list_event, master, list_day, list_organization)
+            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()], add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], "", password, list_event, master, list_day, list_organization, password_entry)
 
 
         creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)
