@@ -2,6 +2,8 @@ from tkinter import END
 from config import START_TIME_MINUTES
 
 def update_listbox(list_day, venue_id, date, listbox):
+    listbox.delete(0, END)
+
     events = []
     
     for i in list_day:
@@ -11,6 +13,7 @@ def update_listbox(list_day, venue_id, date, listbox):
 
 
     if events:
+        events.sort(key=lambda event: event.start_id)
         listbox.insert(END, "МЕРОПРИЯТИЯ:")
 
         for event in events:

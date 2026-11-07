@@ -37,6 +37,8 @@ def main_screen():
     frame_dashboard = ttk.Frame(master=frame_main, borderwidth=1, relief=SOLID)
     frame_dashboard.place(x=0, y=frame_main.winfo_height() * 6 // 7, height=frame_main.winfo_height() // 7, width=frame_main.winfo_width())
 
+    listbox_information = Listbox(master=frame_infromation, justify=CENTER, height=frame_infromation.winfo_height())
+    listbox_information.pack(fill=X)
 
     notebook = ttk.Notebook(master=frame_work_with_event)
     notebook.place(x=0, y=0, width=frame_work_with_event.winfo_width(), height=frame_work_with_event.winfo_height())
@@ -51,7 +53,7 @@ def main_screen():
         date_entry = DateEntry(master=master, mindate=datetime.now())
         date_entry.place(x=13, y=10)
 
-        date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry, venue_id=number: new_date_click(_, master, list_day, list_organization, number, date_entry, venue_id))
+        date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry, venue_id=number, listbox=listbox_information: new_date_click(_, master, list_day, list_organization, number, date_entry, venue_id, listbox))
 
         slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
 
@@ -85,17 +87,15 @@ def main_screen():
             name_event = name_event_entry.get()
 
             add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()] if organization_combobox.current() != -1 else None, add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry)
-
+            update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
 
         creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)
         creat_event_button.place(x=(name_event_entry.winfo_x() + name_event_entry.winfo_width() + 20), y=(name_event_entry.winfo_y() - 2))
 
+    update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
+    notebook.bind("<<NotebookTabChanged>>", lambda _: update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information))
 
-    listbox_information = Listbox(master=frame_infromation, justify=CENTER)
-    update_listbox(list_day, notebook.index(notebook.select()), list(map(int, (str(datetime.now()).split()[0]).split("-"))), listbox_information)
-    listbox_information.pack(fill=X)
-    
-    
+
     root.mainloop()
 
     save_data(Path("code").absolute() / "full_information.json", list_organization, list_venue, list_day, list_event)
