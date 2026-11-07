@@ -4,7 +4,7 @@ from tkinter import END
 from config import START_END
 
 
-def add_event(venue, organization, day, start_id: int, end_id: int, event_name: str, password: str, list_event: list, master, list_day: list, list_organization: list, password_entry, name_event_entry) -> None:
+def add_event(venue, organization, day, start_id: int, end_id: int, event_name: str, password: str, list_event: list, master, list_day: list, list_organization: list, password_entry, name_event_entry, listbox) -> None:
     if organization == None or not organization.check_password(password) or (start_id == 0 and end_id == 0):
         return None
 
@@ -14,4 +14,4 @@ def add_event(venue, organization, day, start_id: int, end_id: int, event_name: 
 
     password_entry.delete(0, END)
     name_event_entry.delete(0, END)
-    create_canvas(master, list_day, list_organization, venue.id, day.get_day_information())
+    create_canvas(master, list_day, list_organization, venue.id, day.get_day_information(), listbox)

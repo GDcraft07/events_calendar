@@ -2,7 +2,7 @@ from config import COLORS
 import tkinter
 from config import START_END
 
-def change_color(slot_id: int, slots_canvas: tkinter.Canvas, select_slot_ids: list, mask: list, venue_id: int) -> list:
+def change_color(slot_id: int, slots_canvas: tkinter.Canvas, select_slot_ids: list, mask: list, venue_id: int, listbox, events: list) -> list:
     slot_color = slots_canvas.itemcget(slot_id, "fill")
 
     if slot_color == COLORS["GRAY"]:
@@ -53,6 +53,19 @@ def change_color(slot_id: int, slots_canvas: tkinter.Canvas, select_slot_ids: li
                     select_slot_ids[1].remove(i)
                     mask[i - 1] = 0
                     select_slot_ids[0] = True
+
+    else:
+        events.sort(key=lambda x: x.start_id)
+
+        index = 0
+        
+        for i in range(0, len(events)):
+            if slot_id <= events[i].end_id:
+                index = i
+                break
+
+        listbox.selection_clear(0, tkinter.END)
+        listbox.selection_set(index + 1)
 
     if select_slot_ids[0] != None:
         START_END[venue_id] = [select_slot_ids[1][0], select_slot_ids[1][-1]]

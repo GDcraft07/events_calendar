@@ -37,7 +37,7 @@ def main_screen():
     frame_dashboard = ttk.Frame(master=frame_main, borderwidth=1, relief=SOLID)
     frame_dashboard.place(x=0, y=frame_main.winfo_height() * 6 // 7, height=frame_main.winfo_height() // 7, width=frame_main.winfo_width())
 
-    listbox_information = Listbox(master=frame_infromation, justify=CENTER, height=frame_infromation.winfo_height())
+    listbox_information = Listbox(master=frame_infromation, justify=CENTER, height=frame_infromation.winfo_height(), font=("Arial", 8))
     listbox_information.pack(fill=X)
 
     notebook = ttk.Notebook(master=frame_work_with_event)
@@ -55,7 +55,7 @@ def main_screen():
 
         date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry, venue_id=number, listbox=listbox_information: new_date_click(_, master, list_day, list_organization, number, date_entry, venue_id, listbox))
 
-        slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))))
+        slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
 
         organization_label = ttk.Label(master=master, text="Организация", font=TEXT_FONT)
         organization_label.place(x=13, y=(slots_canvas.winfo_height() + slots_canvas.winfo_y() + 3))
@@ -86,7 +86,7 @@ def main_screen():
             password = password_entry.get()
             name_event = name_event_entry.get()
 
-            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()] if organization_combobox.current() != -1 else None, add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry)
+            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()] if organization_combobox.current() != -1 else None, add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry, listbox_information)
             update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
 
         creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)
