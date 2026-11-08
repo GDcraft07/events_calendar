@@ -1,10 +1,12 @@
 from code.classes.event import Event
 from create_canvas import create_canvas
 from tkinter import END, messagebox
-from config import START_END, COLORS
+from config import START_END
 
 
 def add_event(venue, organization, day, start_id: int, end_id: int, event_name: str, password: str, list_event: list, master, list_day: list, list_organization: list, password_entry, name_event_entry, listbox) -> None:
+    ''' Функция, которая создает и добавляет мероприятие в список мероприятий '''
+    
     if organization == None:
         messagebox.showerror(title="ОШИБКА", message="ВЫБЕРЕТЕ ОРГАНИЗАЦИЮ")
         return

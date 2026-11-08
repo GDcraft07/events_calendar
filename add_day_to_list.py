@@ -1,7 +1,8 @@
 from code.classes.day import Day
 
 
-def add_day_to_list(date_information, list_day):
+def add_day_to_list(date_information, list_day: list):
+    ''' Функция, которая возвращает класс дня который нам нужен из списка или создает его, если такого дня нету '''
     normal_date = list(map(int, str(date_information).split("-")))
 
     for i in list_day:

@@ -31,11 +31,11 @@ def main_screen():
     frame_infromation.place(x=WIDTH * 5 // 7, y=0, height=HEIGHT, width=WIDTH * 2 // 7)
 
     frame_work_with_event = ttk.Frame(master=frame_main, borderwidth=1, relief=SOLID)
-    frame_work_with_event.place(x=0, y=0, height=frame_main.winfo_height() * 6 // 7, width=frame_main.winfo_width())
+    frame_work_with_event.place(x=0, y=0, height=frame_main.winfo_height() * 93 // 120, width=frame_main.winfo_width())
     frame_work_with_event.update()
 
     frame_dashboard = ttk.Frame(master=frame_main, borderwidth=1, relief=SOLID)
-    frame_dashboard.place(x=0, y=frame_main.winfo_height() * 6 // 7, height=frame_main.winfo_height() // 7, width=frame_main.winfo_width())
+    frame_dashboard.place(x=0, y=frame_main.winfo_height() * 93 // 120, height=frame_main.winfo_height() * 27 // 120, width=frame_main.winfo_width())
 
     listbox_information = Listbox(master=frame_infromation, justify=CENTER, height=frame_infromation.winfo_height(), font=("Arial", 8))
     listbox_information.pack(fill=X)

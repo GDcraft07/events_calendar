@@ -1,7 +1,9 @@
 from tkinter import END
 from config import START_TIME_MINUTES
 
-def update_listbox(list_day, venue_id, date, listbox):
+def update_listbox(list_day: list, venue_id: int, date: list, listbox) -> None:
+    ''' Обнавления поля со списком всех мероприятий на опредененной площадке в определенный день '''
+
     listbox.delete(0, END)
 
     events = []
