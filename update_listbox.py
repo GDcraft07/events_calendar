@@ -14,7 +14,6 @@ def update_listbox(list_day: list, venue_id: int, date: list, listbox) -> None:
             events = i.get_events_on_venue(venue_id)
             break
 
-
     if events:
         events.sort(key=lambda event: event.start_id)
         listbox.insert(END, "МЕРОПРИЯТИЯ:")

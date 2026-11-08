@@ -4,6 +4,8 @@ from change_color import change_color
 
 
 def create_canvas(master, list_day: list, list_organization: list, venue_id: int, date: list, listbox) -> Canvas:
+    ''' Создает поле со слотами '''
+    
     slots_canvas = Canvas(master=master, bg=COLORS["WHITE"], width=(SIZE_SLOT * COLUMN_COUNT_SLOTS), height=(SIZE_SLOT * ROW_COUNT_SLOTS))
     slots_canvas.place(x=13, y=40)
     slots_canvas.update()

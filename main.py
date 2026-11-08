@@ -15,9 +15,11 @@ from update_dashboard import update_dashboard
 
 
 def main():
+    ''' Основаная функция, в которой собирается весь проект воедино и отрисовывается дизайн '''
     root = Tk()
     root.geometry(f"{WIDTH}x{HEIGHT}+{(root.winfo_screenwidth() - WIDTH) // 2}+{(root.winfo_screenheight() - HEIGHT) // 2}")
     root.title("Бронирование площадок")
+    root.resizable(False, False)
 
 
     list_organization, list_venue, list_day, list_event = get_data(Path("code").absolute() / "full_information.json")
@@ -76,7 +78,6 @@ def main():
         
         date_entry = DateEntry(master=master, mindate=datetime.now())
         date_entry.place(x=13, y=10)
-
         date_entry.bind("<<DateEntrySelected>>", lambda _, master=master, list_day=list_day, list_organization=list_organization, number=number, date_entry=date_entry, venue_id=number, listbox=listbox_information: new_date_click(_, master, list_day, list_organization, number, date_entry, venue_id, listbox))
 
         slots_canvas = create_canvas(master, list_day, list_organization, number, list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
@@ -88,7 +89,6 @@ def main():
         organization_combobox = ttk.Combobox(master=master, width=15, values=[org.organization_name for org in list_organization], state="readonly")
         organization_combobox.place(x=13, y=(organization_label.winfo_height() + organization_label.winfo_y() + 2))
         organization_combobox.update()
-
 
         password_label = ttk.Label(master=master, text="Пароль", font=TEXT_FONT)
         password_label.place(x=(organization_label.winfo_x() + organization_combobox.winfo_width() + 20), y=organization_label.winfo_y())
@@ -106,7 +106,10 @@ def main():
         name_event_entry.place(x=name_event_label.winfo_x(), y=(name_event_label.winfo_height() + name_event_label.winfo_y() + 1))
         name_event_entry.update()
 
+
         def accept_click(password_entry=password_entry, organization_combobox=organization_combobox, date_entry=date_entry, master=master, name_event_entry=name_event_entry):
+            ''' Обработчик нажатия на кнопку '''
+            
             password = password_entry.get()
             name_event = name_event_entry.get()
 
@@ -116,16 +119,15 @@ def main():
         creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)
         creat_event_button.place(x=(name_event_entry.winfo_x() + name_event_entry.winfo_width() + 20), y=(name_event_entry.winfo_y() - 2))
 
+
     update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
     notebook.bind("<<NotebookTabChanged>>", lambda _: update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information))
-
 
     update_dashboard(root, dashboard_treeview, list_day, True, True)
 
     root.mainloop()
 
     save_data(Path("code").absolute() / "full_information.json", list_organization, list_venue, list_day, list_event)
-    
 
 
 if __name__ == "__main__":

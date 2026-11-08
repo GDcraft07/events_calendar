@@ -4,6 +4,8 @@ from config import START_TIME_MINUTES, COUNT_SLOTS
 
 
 def update_dashboard(root, dashboard, list_day: list, fisrt_start: bool, its_main_start) -> None:
+    ''' Автоматическое обнавление дэшборда '''
+    
     time, mili = str(datetime.now().time()).split(".")
     mili = int(mili) // 1000
     hour, minute, second = map(int, time.split(":"))    
