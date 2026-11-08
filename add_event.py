@@ -21,6 +21,10 @@ def add_event(venue, organization, day, start_id: int, end_id: int, event_name: 
         messagebox.showerror(title="ОШИБКА", message="ВЫБЕРЕТЕ СЛОТЫ ПРОВЕДЕНИЯ МЕРОПРИЯТИЯ")
         return
 
+    if not event_name:
+        messagebox.showerror(title="ОШИБКА", message="ВВЕДИТЕ НАЗВАНИЕ МЕРОПРИЯТИЯ")
+        return
+
     new_event = Event(venue, organization, day, start_id - 1, end_id, event_name)
     list_event.append(new_event)
     START_END[venue.id] = [0, 0]

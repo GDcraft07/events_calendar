@@ -3,7 +3,7 @@
         {
             "id": 0,
             "organization_name": "Тинькофф банк",
-            "color": "#00FF00",
+            "color": "#FFFF00",
             "password": "8d27851e631e6b85424edb5edc8d0979144c240ed8985c61a7c73dae2a8255da"
         },
         {
@@ -15,7 +15,7 @@
         {
             "id": 2,
             "organization_name": "Сбербанк",
-            "color": "#00FFF0",
+            "color": "#00FF00",
             "password": "05415d5aece4e4e571491148d91d57bdf03376b72e6113134258f08a79a2222d"
         },
         {
@@ -27,7 +27,7 @@
         {
             "id": 4,
             "organization_name": "ФПИ Банк",
-            "color": "#FF00FF",
+            "color": "#8B00FF",
             "password": "1069870489b07347f8b9cc82dd8e0dbcd842b861e3bc56054bb05d5e748749bc"
         }
     ],
