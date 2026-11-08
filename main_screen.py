@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from config import HEIGHT, WIDTH, TEXT_FONT, COUNT_VENUES, START_END
+from config import HEIGHT, WIDTH, TEXT_FONT, COUNT_VENUES, START_END, FONT_INFORMATION
 from tkcalendar import DateEntry
 from pathlib import Path
 from code.get_information import get_data
@@ -18,10 +18,13 @@ def main_screen():
     root.geometry(f"{WIDTH}x{HEIGHT}+{(root.winfo_screenwidth() - WIDTH) // 2}+{(root.winfo_screenheight() - HEIGHT) // 2}")
     root.title("Бронирование площадок")
 
+
     list_organization, list_venue, list_day, list_event = get_data(Path("code").absolute() / "full_information.json")
+
 
     logo = PhotoImage(file=str(Path(__file__).resolve().parent / "logo.png"))
     root.iconphoto(True, logo)
+
 
     frame_main = ttk.Frame(master=root, borderwidth=1, relief=SOLID)
     frame_main.place(x=0, y=0, height=HEIGHT, width=WIDTH * 5 // 7)
@@ -36,12 +39,36 @@ def main_screen():
 
     frame_dashboard = ttk.Frame(master=frame_main, borderwidth=1, relief=SOLID)
     frame_dashboard.place(x=0, y=frame_main.winfo_height() * 93 // 120, height=frame_main.winfo_height() * 27 // 120, width=frame_main.winfo_width())
+    frame_dashboard.update()
 
-    listbox_information = Listbox(master=frame_infromation, justify=CENTER, height=frame_infromation.winfo_height(), font=("Arial", 8))
+
+    listbox_information = Listbox(master=frame_infromation, justify=CENTER, height=frame_infromation.winfo_height(), font=FONT_INFORMATION)
     listbox_information.pack(fill=X)
+
 
     notebook = ttk.Notebook(master=frame_work_with_event)
     notebook.place(x=0, y=0, width=frame_work_with_event.winfo_width(), height=frame_work_with_event.winfo_height())
+
+
+    style = ttk.Style()
+    style.configure("Treeview", rowheight=(frame_dashboard.winfo_height() - 26) // 3, font=FONT_INFORMATION)
+
+    dashboard_treeview = ttk.Treeview(master=frame_dashboard, columns=("timing", "venue_1", "venue_2", "venue_3", "venue_4", "venue_5"))
+    dashboard_treeview.place(x=0, y=0, width=frame_dashboard.winfo_width(), height=frame_dashboard.winfo_height())
+
+    dashboard_treeview.column("#0", width=0, stretch=NO)
+    dashboard_treeview.column("timing", width=frame_dashboard.winfo_width() // 6)
+    for i in range(5):
+        dashboard_treeview.column(f"venue_{i + 1}", width=frame_dashboard.winfo_width() // 6)
+
+    dashboard_treeview.heading("timing", text="")
+    for i in range(5):
+        dashboard_treeview.heading(f"venue_{i + 1}", text=f"Площадка №{i + 1}")
+
+    dashboard_treeview.insert("", END, values=("сейчас", "Брифинг", "", "", "", ""))
+    dashboard_treeview.insert("", END, values=("Через 15 минут", "", "", "", "", ""))
+    dashboard_treeview.insert("", END, values=("Через 30 минут", "", "", "", "", ""))
+
 
     venues = [ttk.Frame(notebook) for _ in range(COUNT_VENUES)]
 
