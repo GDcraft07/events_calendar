@@ -28,6 +28,6 @@ def create_canvas(master, list_day, list_organization, venue_id, date, listbox):
     for i in range(ROW_COUNT_SLOTS):
         for j in range(COLUMN_COUNT_SLOTS):
             slot_time = START_TIME_MINUTES + (i * COLUMN_COUNT_SLOTS + j) * 15
-            slots_canvas.create_text(j * SIZE_SLOT + 14, i * SIZE_SLOT + 10, text=f"{slot_time // 60}::{"00" if not slot_time % 60 else slot_time % 60}", font=("Arial", 7))
+            slots_canvas.create_text(j * SIZE_SLOT + 14, i * SIZE_SLOT + 10, text=f"{slot_time // 60}:{"00" if not slot_time % 60 else slot_time % 60}", font=("Arial", 7))
 
     return slots_canvas
