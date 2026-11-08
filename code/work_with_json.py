@@ -1,5 +1,6 @@
 import json
 
+
 def read_json(file_name: str) -> dict:
     ''' Получаем данные из json-файла '''
 

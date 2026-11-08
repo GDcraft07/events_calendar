@@ -2,6 +2,7 @@ from config import COLORS
 import tkinter
 from config import START_END
 
+
 def change_color(slot_id: int, slots_canvas: tkinter.Canvas, select_slot_ids: list, mask: list, venue_id: int, listbox, events: list) -> list:
     ''' Функция обрабатывающая нажатия на слоты '''
     

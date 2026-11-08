@@ -1,5 +1,6 @@
 from .config import NUMBER_OF_SLOTS
 
+
 class Day:
     ''' Класс отдельно взятого дня из календаря '''
     

@@ -11,9 +11,10 @@ from code.save_information import save_data
 from new_date_click import new_date_click 
 from datetime import datetime
 from update_listbox import update_listbox
+from update_dashboard import update_dashboard
 
 
-def main_screen():
+def main():
     root = Tk()
     root.geometry(f"{WIDTH}x{HEIGHT}+{(root.winfo_screenwidth() - WIDTH) // 2}+{(root.winfo_screenheight() - HEIGHT) // 2}")
     root.title("Бронирование площадок")
@@ -65,10 +66,6 @@ def main_screen():
     for i in range(5):
         dashboard_treeview.heading(f"venue_{i + 1}", text=f"Площадка №{i + 1}")
 
-    dashboard_treeview.insert("", END, values=("сейчас", "Брифинг", "", "", "", ""))
-    dashboard_treeview.insert("", END, values=("Через 15 минут", "", "", "", "", ""))
-    dashboard_treeview.insert("", END, values=("Через 30 минут", "", "", "", "", ""))
-
 
     venues = [ttk.Frame(notebook) for _ in range(COUNT_VENUES)]
 
@@ -113,7 +110,7 @@ def main_screen():
             password = password_entry.get()
             name_event = name_event_entry.get()
 
-            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()] if organization_combobox.current() != -1 else None, add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry, listbox_information)
+            add_event(list_venue[notebook.index(notebook.select())], list_organization[organization_combobox.current()] if organization_combobox.current() != -1 else None, add_day_to_list(date_entry.get_date(), list_day), *START_END[notebook.index(notebook.select())], name_event, password, list_event, master, list_day, list_organization, password_entry, name_event_entry, listbox_information, root, dashboard_treeview)
             update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information)
 
         creat_event_button = ttk.Button(master=master, text="Добавить мероприятие", command=accept_click)
@@ -123,6 +120,8 @@ def main_screen():
     notebook.bind("<<NotebookTabChanged>>", lambda _: update_listbox(list_day, notebook.index(notebook.select()), list(map(int, str(date_entry.get_date()).split("-"))), listbox_information))
 
 
+    update_dashboard(root, dashboard_treeview, list_day, True, True)
+
     root.mainloop()
 
     save_data(Path("code").absolute() / "full_information.json", list_organization, list_venue, list_day, list_event)
@@ -130,4 +129,4 @@ def main_screen():
 
 
 if __name__ == "__main__":
-    main_screen()
+    main()

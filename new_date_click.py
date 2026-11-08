@@ -8,4 +8,4 @@ def new_date_click(_, master, list_day: list, list_organization: list, number: i
     date = list(map(int, str(date_entry.get_date()).split("-")))
     update_listbox(list_day, venue_id, date, listbox)
     START_END[venue_id] = [0, 0]
-    create_canvas(master, list_day, list_organization, number, date)
+    create_canvas(master, list_day, list_organization, number, date, listbox)
